@@ -2,208 +2,337 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>지렁이 게임</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNS 중독 개선 앱 프로젝트</title>
   <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: #111;
-      color: white;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      background: #f4f7fb;
+      color: #222;
+      line-height: 1.7;
     }
 
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    canvas {
-      background: #222;
-      border: 4px solid #4CAF50;
-    }
-
-    .top-ui {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: #4CAF50;
+    header {
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
       color: white;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 8px;
+      padding: 70px 20px;
+      text-align: center;
     }
 
-    button:hover {
-      background: #45a049;
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 12px;
     }
 
-    #score {
-      font-size: 22px;
+    header p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background: white;
+      padding: 14px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #1e40af;
       font-weight: bold;
     }
 
-    #message {
-      margin-top: 10px;
-      color: #ff6666;
-      font-size: 20px;
+    section {
+      max-width: 950px;
+      margin: 35px auto;
+      background: white;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      color: #1e40af;
+      border-left: 6px solid #3b82f6;
+      padding-left: 12px;
+    }
+
+    h3 {
+      color: #2563eb;
+      margin-top: 28px;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+    }
+
+    .card-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #eff6ff;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid #bfdbfe;
+    }
+
+    .card strong {
+      color: #1d4ed8;
+    }
+
+    .step {
+      background: #f8fafc;
+      border-left: 5px solid #60a5fa;
+      padding: 18px;
+      margin: 16px 0;
+      border-radius: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin: 4px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .highlight {
+      background: #fff7ed;
+      border-left: 5px solid #fb923c;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px;
+      }
+
+      section {
+        margin: 20px;
+        padding: 22px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>🐛 지렁이 게임</h1>
+  <header>
+    <h1>청소년 SNS 중독 개선 앱 프로젝트</h1>
+    <p>
+      AI와의 대화를 바탕으로 SNS 사용 시간을 측정하고,
+      일정 시간 초과 시 알림을 제공하는 안드로이드 앱 구현 방법을 정리한 프로젝트 웹페이지입니다.
+    </p>
+  </header>
 
-  <div class="top-ui">
-    <button id="startBtn">게임 시작</button>
-    <div id="score">점수: 0</div>
-  </div>
+  <nav>
+    <a href="#ai">AI 대화 내용</a>
+    <a href="#method">구현 방법</a>
+    <a href="#team">팀 분석</a>
+    <a href="#review">AI 활용 소감</a>
+  </nav>
 
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <section id="ai">
+    <h2>1. AI와 나눈 대화 내용</h2>
 
-  <div id="message"></div>
+    <h3>사용한 AI 도구</h3>
+    <p>ChatGPT</p>
 
-  <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    <h3>AI에게 던진 질문 목록</h3>
+    <ol>
+      <li>청소년들의 SNS 중독을 치료하기 위한 앱을 실제로 만들기 위해 프로그래밍을 도와줄 수 있는가?</li>
+      <li>이런 코딩은 보통 어디에 넣어서 구현하는가?</li>
+      <li>복붙하면 돌아가는 최소 기능 버전을 한 번에 짜줄 수 있는가?</li>
+      <li>완전 초보자도 따라할 수 있도록 컴퓨터 기준으로 Android Studio 사용법까지 알려줄 수 있는가?</li>
+    </ol>
 
-    const box = 20;
-    const canvasSize = 400;
+    <h3>AI 답변 핵심 내용 요약</h3>
+    <p>
+      AI는 청소년 SNS 중독 개선 앱을 만들기 위해 안드로이드 기반 개발이 가장 현실적이라고 설명했다.
+      Android Studio와 Kotlin을 사용하고, SNS 앱 사용 시간 측정에는 UsageStatsManager를,
+      알림 기능에는 NotificationManager를, 주기적 감시에는 WorkManager를 활용하는 방식을 제안했다.
+    </p>
+    <p>
+      또한 인터넷 속도 제한 기능은 일반 앱 권한만으로는 어렵고 VpnService 같은 고급 기술이 필요하므로,
+      초기 단계에서는 사용 시간 측정과 경고 알림 기능을 먼저 구현하는 것이 현실적이라고 조언했다.
+    </p>
 
-    let worm;
-    let direction;
-    let food;
-    let score;
-    let game;
-    let isRunning = false;
+    <div class="highlight">
+      <strong>대화 캡처 또는 링크:</strong>
+      <p>ChatGPT 대화 캡처본을 별도로 첨부할 예정입니다.</p>
+    </div>
+  </section>
 
-    const scoreText = document.getElementById("score");
-    const message = document.getElementById("message");
+  <section id="method">
+    <h2>2. 구현 방법 요약</h2>
 
-    function initGame() {
-      worm = [
-        { x: 10 * box, y: 10 * box }
-      ];
+    <h3>AI가 제안한 기술 스택</h3>
+    <div>
+      <span class="tag">Android Studio</span>
+      <span class="tag">Kotlin</span>
+      <span class="tag">UsageStatsManager</span>
+      <span class="tag">NotificationManager</span>
+      <span class="tag">WorkManager</span>
+      <span class="tag">XML Layout</span>
+    </div>
 
-      direction = "RIGHT";
+    <h3>방법론</h3>
+    <p>
+      AI는 우리 팀의 기술 수준을 고려해 처음부터 모든 기능을 한 번에 구현하기보다,
+      MVP, 즉 최소 기능 제품 방식으로 3단계에 걸쳐 개발하는 방법을 제안했다.
+    </p>
 
-      food = {
-        x: Math.floor(Math.random() * 20) * box,
-        y: Math.floor(Math.random() * 20) * box
-      };
+    <div class="step">
+      <strong>1단계: 사용 시간 측정</strong>
+      <p>
+        UsageStatsManager를 활용해 사용자의 SNS 앱 사용 시간을 측정한다.
+        이를 통해 청소년이 자신의 실제 사용 시간을 확인하고 과다 사용 여부를 인식할 수 있도록 한다.
+      </p>
+    </div>
 
-      score = 0;
-      scoreText.innerText = "점수: 0";
-      message.innerText = "";
-    }
+    <div class="step">
+      <strong>2단계: 알림 및 행동 교정</strong>
+      <p>
+        NotificationManager와 WorkManager를 활용해 일정 사용 시간을 초과하면 경고 알림을 보내고,
+        주기적으로 자동 모니터링하는 기능을 추가한다.
+      </p>
+    </div>
 
-    document.addEventListener("keydown", changeDirection);
+    <div class="step">
+      <strong>3단계: 고급 제한 기능 확장</strong>
+      <p>
+        초기 아이디어였던 인터넷 속도 제한 기능은 VpnService와 같은 고급 기술이 필요하므로,
+        현재 팀 수준에서는 추후 확장 기능으로 설정한다.
+      </p>
+    </div>
 
-    function changeDirection(event) {
-      const key = event.key;
+    <h3>주요 구현 단계</h3>
+    <ol>
+      <li>Android Studio 설치 및 새 프로젝트 생성</li>
+      <li>Kotlin 기반 기본 앱 구조 생성</li>
+      <li>AndroidManifest.xml에 권한 설정</li>
+      <li>UsageStatsManager를 통해 SNS 사용 시간 측정</li>
+      <li>사용 시간 기준 초과 시 알림 기능 구현</li>
+      <li>WorkManager로 일정 시간마다 자동 검사</li>
+      <li>UI 버튼으로 권한 허용 및 사용 시간 확인 기능 구현</li>
+      <li>추후 VPN 기반 속도 제한 기능 확장 검토</li>
+    </ol>
 
-      if (key === "ArrowUp" && direction !== "DOWN") {
-        direction = "UP";
-      } else if (key === "ArrowDown" && direction !== "UP") {
-        direction = "DOWN";
-      } else if (key === "ArrowLeft" && direction !== "RIGHT") {
-        direction = "LEFT";
-      } else if (key === "ArrowRight" && direction !== "LEFT") {
-        direction = "RIGHT";
-      }
-    }
+    <h3>예상 소요 시간 / 난이도</h3>
+    <div class="card-box">
+      <div class="card">
+        <strong>환경 설정</strong>
+        <p>Android Studio 설치 및 프로젝트 생성: 약 1~2시간</p>
+      </div>
+      <div class="card">
+        <strong>기본 구현</strong>
+        <p>코드 적용 및 기능 테스트: 약 2~3시간</p>
+      </div>
+      <div class="card">
+        <strong>오류 수정</strong>
+        <p>권한 문제 및 테스트 수정: 약 3~5시간</p>
+      </div>
+      <div class="card">
+        <strong>난이도</strong>
+        <p>기본 기능은 중간 수준, VPN 속도 제한은 어려움</p>
+      </div>
+    </div>
+  </section>
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  <section id="team">
+    <h2>3. 팀 분석 및 의견</h2>
 
-      // 먹이 그리기
-      ctx.fillStyle = "red";
-      ctx.fillRect(food.x, food.y, box, box);
+    <h3>실현 가능성 평가</h3>
+    <div class="highlight">
+      <strong>평가: 부분 가능</strong>
+      <p>
+        AI가 제안한 사용 시간 측정과 알림 기능은 Android Studio와 제공된 코드를 활용하면 구현 가능성이 높다.
+        그러나 인터넷 속도 제한 기능은 VpnService와 같은 고급 기술이 필요해 현재 팀 수준에서는 어렵다고 판단했다.
+      </p>
+    </div>
 
-      // 지렁이 그리기
-      for (let i = 0; i < worm.length; i++) {
-        ctx.fillStyle = i === 0 ? "#7CFC00" : "#32CD32";
-        ctx.fillRect(worm[i].x, worm[i].y, box, box);
+    <h3>우리 팀 적용 계획</h3>
+    <div class="card-box">
+      <div class="card">
+        <strong>실제 적용할 부분</strong>
+        <ul>
+          <li>SNS 사용 시간 측정</li>
+          <li>일정 시간 초과 시 경고 알림</li>
+          <li>기본 UI 제작</li>
+          <li>Android Studio 기반 MVP 구현</li>
+        </ul>
+      </div>
 
-        ctx.strokeStyle = "#111";
-        ctx.strokeRect(worm[i].x, worm[i].y, box, box);
-      }
+      <div class="card">
+        <strong>수정할 부분</strong>
+        <ul>
+          <li>인터넷 속도 제한은 추후 확장 기능으로 설정</li>
+          <li>속도 제한 대신 집중 모드 화면으로 대체 가능</li>
+          <li>청소년이 이해하기 쉬운 UI로 단순화</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      // 머리 위치
-      let wormX = worm[0].x;
-      let wormY = worm[0].y;
+  <section id="review">
+    <h2>4. AI 활용 소감</h2>
 
-      if (direction === "UP") wormY -= box;
-      if (direction === "DOWN") wormY += box;
-      if (direction === "LEFT") wormX -= box;
-      if (direction === "RIGHT") wormX += box;
+    <h3>도움이 된 점</h3>
+    <p>
+      AI는 단순히 아이디어만 제시한 것이 아니라 실제 구현 가능한 기술 스택,
+      코드 구조, 개발 프로그램 사용법까지 단계별로 설명해주었다.
+      특히 우리 팀 수준에서 어떤 기능이 현실적이고 어떤 기능이 어려운지 구분해 준 점이 도움이 되었다.
+    </p>
 
-      // 먹이 먹었을 때
-      if (wormX === food.x && wormY === food.y) {
-        score++;
-        scoreText.innerText = "점수: " + score;
+    <h3>한계로 느낀 점</h3>
+    <p>
+      제공된 코드가 그대로 완벽하게 작동하기 위해서는 Android Studio 환경 설정,
+      권한 문제 해결, 오류 수정 등 추가적인 이해가 필요했다.
+      또한 인터넷 속도 제한처럼 고급 기능은 AI 설명만으로 완전히 구현하기 어렵다고 느꼈다.
+    </p>
 
-        food = {
-          x: Math.floor(Math.random() * 20) * box,
-          y: Math.floor(Math.random() * 20) * box
-        };
-      } else {
-        worm.pop();
-      }
+    <div class="highlight">
+      <strong>최종 정리</strong>
+      <p>
+        AI를 활용하면서 단순한 아이디어를 실제 구현 가능한 앱 구조로 구체화할 수 있었지만,
+        기술적 한계를 고려해 팀 수준에 맞게 기능을 조정하는 과정이 중요하다는 점을 알게 되었다.
+      </p>
+    </div>
+  </section>
 
-      const newHead = {
-        x: wormX,
-        y: wormY
-      };
-
-      // 벽 충돌
-      if (
-        wormX < 0 ||
-        wormY < 0 ||
-        wormX >= canvasSize ||
-        wormY >= canvasSize
-      ) {
-        clearInterval(game);
-        isRunning = false;
-        message.innerText = "💀 게임 오버! 다시 시작해보세요.";
-        return;
-      }
-
-      // 자기 몸 충돌
-      for (let i = 0; i < worm.length; i++) {
-        if (wormX === worm[i].x && wormY === worm[i].y) {
-          clearInterval(game);
-          isRunning = false;
-          message.innerText = "💀 자기 몸에 부딪혔습니다!";
-          return;
-        }
-      }
-
-      worm.unshift(newHead);
-    }
-
-    document.getElementById("startBtn").addEventListener("click", () => {
-      if (isRunning) return;
-
-      initGame();
-
-      game = setInterval(draw, 120);
-
-      isRunning = true;
-    });
-
-    initGame();
-  </script>
+  <footer>
+    <p>창의적 공학입문 설계 | SNS 중독 개선 앱 프로젝트</p>
+  </footer>
 
 </body>
 </html>
