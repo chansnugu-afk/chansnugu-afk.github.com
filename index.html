@@ -3,335 +3,328 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SNS 중독 개선 앱 프로젝트</title>
+  <title>SNS Control - 청소년 SNS 사용 관리 앱</title>
   <style>
     * {
       box-sizing: border-box;
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
+      background: #f5f7fb;
       color: #222;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     header {
-      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      background: linear-gradient(135deg, #4f7cff, #7c5cff);
       color: white;
-      padding: 70px 20px;
+      padding: 80px 24px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 36px;
-      margin-bottom: 12px;
+      font-size: 42px;
+      margin-bottom: 16px;
     }
 
     header p {
       font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto;
+      max-width: 720px;
+      margin: 0 auto 28px;
     }
 
-    nav {
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
       background: white;
-      padding: 14px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      z-index: 10;
-    }
-
-    nav a {
-      margin: 0 12px;
+      color: #4f63ff;
+      border-radius: 12px;
       text-decoration: none;
-      color: #1e40af;
       font-weight: bold;
     }
 
     section {
-      max-width: 950px;
-      margin: 35px auto;
-      background: white;
-      padding: 32px;
-      border-radius: 18px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 24px;
     }
 
-    h2 {
-      color: #1e40af;
-      border-left: 6px solid #3b82f6;
-      padding-left: 12px;
+    .section-title {
+      font-size: 30px;
+      margin-bottom: 16px;
+      text-align: center;
     }
 
-    h3 {
-      color: #2563eb;
-      margin-top: 28px;
+    .section-desc {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
     }
 
-    ul, ol {
-      padding-left: 24px;
-    }
-
-    .card-box {
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: #eff6ff;
-      padding: 20px;
-      border-radius: 14px;
-      border: 1px solid #bfdbfe;
+      background: white;
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
-    .card strong {
-      color: #1d4ed8;
+    .card h3 {
+      margin-bottom: 12px;
+      color: #4f63ff;
+    }
+
+    .problem {
+      background: white;
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .step {
-      background: #f8fafc;
-      border-left: 5px solid #60a5fa;
-      padding: 18px;
-      margin: 16px 0;
-      border-radius: 10px;
+      background: white;
+      padding: 22px 28px;
+      border-left: 6px solid #5b6cff;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     }
 
-    .tag {
-      display: inline-block;
-      background: #dbeafe;
-      color: #1e40af;
-      padding: 6px 12px;
-      border-radius: 20px;
-      margin: 4px;
-      font-size: 14px;
-      font-weight: bold;
+    .mockup {
+      background: #111827;
+      color: white;
+      border-radius: 32px;
+      padding: 28px;
+      max-width: 360px;
+      margin: 0 auto;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
     }
 
-    .highlight {
-      background: #fff7ed;
-      border-left: 5px solid #fb923c;
+    .screen {
+      background: white;
+      color: #222;
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .usage-box {
+      background: #eef2ff;
       padding: 18px;
-      border-radius: 10px;
-      margin-top: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      text-align: center;
+    }
+
+    .usage-box strong {
+      font-size: 34px;
+      color: #4f63ff;
+    }
+
+    .warning {
+      background: #fff4e5;
+      padding: 16px;
+      border-radius: 14px;
+      color: #9a5a00;
+      margin-top: 12px;
     }
 
     footer {
+      background: #111827;
+      color: white;
       text-align: center;
-      padding: 30px;
-      color: #666;
+      padding: 36px 20px;
     }
 
     @media (max-width: 600px) {
       header h1 {
-        font-size: 28px;
+        font-size: 32px;
       }
 
-      nav a {
-        display: inline-block;
-        margin: 6px;
-      }
-
-      section {
-        margin: 20px;
-        padding: 22px;
+      .section-title {
+        font-size: 24px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <h1>청소년 SNS 중독 개선 앱 프로젝트</h1>
+    <h1>SNS Control</h1>
     <p>
-      AI와의 대화를 바탕으로 SNS 사용 시간을 측정하고,
-      일정 시간 초과 시 알림을 제공하는 안드로이드 앱 구현 방법을 정리한 프로젝트 웹페이지입니다.
+      청소년의 과도한 SNS 사용을 줄이기 위해 사용 시간을 측정하고,
+      일정 시간 이상 사용하면 알림과 제한 모드를 제공하는 디지털 습관 관리 앱입니다.
     </p>
+    <a href="#features" class="btn">앱 기능 보기</a>
   </header>
 
-  <nav>
-    <a href="#ai">AI 대화 내용</a>
-    <a href="#method">구현 방법</a>
-    <a href="#team">팀 분석</a>
-    <a href="#review">AI 활용 소감</a>
-  </nav>
-
-  <section id="ai">
-    <h2>1. AI와 나눈 대화 내용</h2>
-
-    <h3>사용한 AI 도구</h3>
-    <p>ChatGPT</p>
-
-    <h3>AI에게 던진 질문 목록</h3>
-    <ol>
-      <li>청소년들의 SNS 중독을 치료하기 위한 앱을 실제로 만들기 위해 프로그래밍을 도와줄 수 있는가?</li>
-      <li>이런 코딩은 보통 어디에 넣어서 구현하는가?</li>
-      <li>복붙하면 돌아가는 최소 기능 버전을 한 번에 짜줄 수 있는가?</li>
-      <li>완전 초보자도 따라할 수 있도록 컴퓨터 기준으로 Android Studio 사용법까지 알려줄 수 있는가?</li>
-    </ol>
-
-    <h3>AI 답변 핵심 내용 요약</h3>
-    <p>
-      AI는 청소년 SNS 중독 개선 앱을 만들기 위해 안드로이드 기반 개발이 가장 현실적이라고 설명했다.
-      Android Studio와 Kotlin을 사용하고, SNS 앱 사용 시간 측정에는 UsageStatsManager를,
-      알림 기능에는 NotificationManager를, 주기적 감시에는 WorkManager를 활용하는 방식을 제안했다.
-    </p>
-    <p>
-      또한 인터넷 속도 제한 기능은 일반 앱 권한만으로는 어렵고 VpnService 같은 고급 기술이 필요하므로,
-      초기 단계에서는 사용 시간 측정과 경고 알림 기능을 먼저 구현하는 것이 현실적이라고 조언했다.
+  <section>
+    <h2 class="section-title">문제 상황</h2>
+    <p class="section-desc">
+      청소년들은 SNS의 짧고 강한 자극에 반복적으로 노출되며 사용 시간을 조절하기 어려워지고 있습니다.
     </p>
 
-    <div class="highlight">
-      <strong>대화 캡처 또는 링크:</strong>
-      <p>ChatGPT 대화 캡처본을 별도로 첨부할 예정입니다.</p>
+    <div class="problem">
+      <p>
+        SNS는 즉각적인 보상과 끊임없는 콘텐츠 추천을 통해 사용자가 계속 화면을 보도록 유도합니다.
+        이로 인해 청소년은 학습 집중력 저하, 수면 부족, 자기조절 능력 약화 등의 문제를 겪을 수 있습니다.
+        따라서 단순히 사용을 금지하는 방식보다, 사용 시간을 스스로 인식하고 조절하도록 돕는 기술적 해결책이 필요합니다.
+      </p>
     </div>
   </section>
 
-  <section id="method">
-    <h2>2. 구현 방법 요약</h2>
-
-    <h3>AI가 제안한 기술 스택</h3>
-    <div>
-      <span class="tag">Android Studio</span>
-      <span class="tag">Kotlin</span>
-      <span class="tag">UsageStatsManager</span>
-      <span class="tag">NotificationManager</span>
-      <span class="tag">WorkManager</span>
-      <span class="tag">XML Layout</span>
-    </div>
-
-    <h3>방법론</h3>
-    <p>
-      AI는 우리 팀의 기술 수준을 고려해 처음부터 모든 기능을 한 번에 구현하기보다,
-      MVP, 즉 최소 기능 제품 방식으로 3단계에 걸쳐 개발하는 방법을 제안했다.
+  <section id="features">
+    <h2 class="section-title">주요 기능</h2>
+    <p class="section-desc">
+      앱은 사용 시간 측정, 경고 알림, 제한 모드라는 세 가지 흐름으로 작동합니다.
     </p>
 
-    <div class="step">
-      <strong>1단계: 사용 시간 측정</strong>
-      <p>
-        UsageStatsManager를 활용해 사용자의 SNS 앱 사용 시간을 측정한다.
-        이를 통해 청소년이 자신의 실제 사용 시간을 확인하고 과다 사용 여부를 인식할 수 있도록 한다.
-      </p>
-    </div>
-
-    <div class="step">
-      <strong>2단계: 알림 및 행동 교정</strong>
-      <p>
-        NotificationManager와 WorkManager를 활용해 일정 사용 시간을 초과하면 경고 알림을 보내고,
-        주기적으로 자동 모니터링하는 기능을 추가한다.
-      </p>
-    </div>
-
-    <div class="step">
-      <strong>3단계: 고급 제한 기능 확장</strong>
-      <p>
-        초기 아이디어였던 인터넷 속도 제한 기능은 VpnService와 같은 고급 기술이 필요하므로,
-        현재 팀 수준에서는 추후 확장 기능으로 설정한다.
-      </p>
-    </div>
-
-    <h3>주요 구현 단계</h3>
-    <ol>
-      <li>Android Studio 설치 및 새 프로젝트 생성</li>
-      <li>Kotlin 기반 기본 앱 구조 생성</li>
-      <li>AndroidManifest.xml에 권한 설정</li>
-      <li>UsageStatsManager를 통해 SNS 사용 시간 측정</li>
-      <li>사용 시간 기준 초과 시 알림 기능 구현</li>
-      <li>WorkManager로 일정 시간마다 자동 검사</li>
-      <li>UI 버튼으로 권한 허용 및 사용 시간 확인 기능 구현</li>
-      <li>추후 VPN 기반 속도 제한 기능 확장 검토</li>
-    </ol>
-
-    <h3>예상 소요 시간 / 난이도</h3>
-    <div class="card-box">
+    <div class="cards">
       <div class="card">
-        <strong>환경 설정</strong>
-        <p>Android Studio 설치 및 프로젝트 생성: 약 1~2시간</p>
+        <h3>1. SNS 사용 시간 측정</h3>
+        <p>
+          사용자가 인스타그램, 틱톡, 유튜브 등 주요 SNS 앱을 얼마나 사용했는지 확인합니다.
+        </p>
       </div>
+
       <div class="card">
-        <strong>기본 구현</strong>
-        <p>코드 적용 및 기능 테스트: 약 2~3시간</p>
+        <h3>2. 사용 시간 알림</h3>
+        <p>
+          설정한 사용 시간을 넘으면 알림을 보내 사용자가 자신의 사용 습관을 인식하도록 돕습니다.
+        </p>
       </div>
+
       <div class="card">
-        <strong>오류 수정</strong>
-        <p>권한 문제 및 테스트 수정: 약 3~5시간</p>
+        <h3>3. 제한 모드</h3>
+        <p>
+          일정 시간 이상 사용하면 집중 모드로 전환하고, 향후 VPN 기반 네트워크 지연 기능으로 확장할 수 있습니다.
+        </p>
       </div>
+
       <div class="card">
-        <strong>난이도</strong>
-        <p>기본 기능은 중간 수준, VPN 속도 제한은 어려움</p>
+        <h3>4. 자기조절 유도</h3>
+        <p>
+          단순 차단이 아니라 쉬는 시간, 대체 활동, 목표 설정을 통해 자발적인 사용 감소를 유도합니다.
+        </p>
       </div>
     </div>
   </section>
 
-  <section id="team">
-    <h2>3. 팀 분석 및 의견</h2>
+  <section>
+    <h2 class="section-title">앱 작동 흐름</h2>
+    <p class="section-desc">
+      사용자가 앱을 실행한 뒤, SNS 사용 시간이 기준을 넘으면 단계적으로 경고가 이루어집니다.
+    </p>
 
-    <h3>실현 가능성 평가</h3>
-    <div class="highlight">
-      <strong>평가: 부분 가능</strong>
-      <p>
-        AI가 제안한 사용 시간 측정과 알림 기능은 Android Studio와 제공된 코드를 활용하면 구현 가능성이 높다.
-        그러나 인터넷 속도 제한 기능은 VpnService와 같은 고급 기술이 필요해 현재 팀 수준에서는 어렵다고 판단했다.
-      </p>
-    </div>
-
-    <h3>우리 팀 적용 계획</h3>
-    <div class="card-box">
-      <div class="card">
-        <strong>실제 적용할 부분</strong>
-        <ul>
-          <li>SNS 사용 시간 측정</li>
-          <li>일정 시간 초과 시 경고 알림</li>
-          <li>기본 UI 제작</li>
-          <li>Android Studio 기반 MVP 구현</li>
-        </ul>
+    <div class="flow">
+      <div class="step">
+        <strong>STEP 1.</strong> 사용자가 SNS 앱 사용을 시작합니다.
       </div>
-
-      <div class="card">
-        <strong>수정할 부분</strong>
-        <ul>
-          <li>인터넷 속도 제한은 추후 확장 기능으로 설정</li>
-          <li>속도 제한 대신 집중 모드 화면으로 대체 가능</li>
-          <li>청소년이 이해하기 쉬운 UI로 단순화</li>
-        </ul>
+      <div class="step">
+        <strong>STEP 2.</strong> 앱이 하루 사용 시간을 측정합니다.
+      </div>
+      <div class="step">
+        <strong>STEP 3.</strong> 설정한 제한 시간을 넘으면 경고 알림을 보냅니다.
+      </div>
+      <div class="step">
+        <strong>STEP 4.</strong> 반복 초과 시 집중 모드 또는 인터넷 지연 모드로 전환합니다.
       </div>
     </div>
   </section>
 
-  <section id="review">
-    <h2>4. AI 활용 소감</h2>
-
-    <h3>도움이 된 점</h3>
-    <p>
-      AI는 단순히 아이디어만 제시한 것이 아니라 실제 구현 가능한 기술 스택,
-      코드 구조, 개발 프로그램 사용법까지 단계별로 설명해주었다.
-      특히 우리 팀 수준에서 어떤 기능이 현실적이고 어떤 기능이 어려운지 구분해 준 점이 도움이 되었다.
+  <section>
+    <h2 class="section-title">앱 화면 예시</h2>
+    <p class="section-desc">
+      실제 앱에서는 아래와 같은 형태로 사용 시간을 보여줄 수 있습니다.
     </p>
 
-    <h3>한계로 느낀 점</h3>
-    <p>
-      제공된 코드가 그대로 완벽하게 작동하기 위해서는 Android Studio 환경 설정,
-      권한 문제 해결, 오류 수정 등 추가적인 이해가 필요했다.
-      또한 인터넷 속도 제한처럼 고급 기능은 AI 설명만으로 완전히 구현하기 어렵다고 느꼈다.
+    <div class="mockup">
+      <div class="screen">
+        <h3>오늘의 SNS 사용량</h3>
+
+        <div class="usage-box">
+          <p>총 사용 시간</p>
+          <strong>72분</strong>
+        </div>
+
+        <p>Instagram: 34분</p>
+        <p>YouTube: 25분</p>
+        <p>TikTok: 13분</p>
+
+        <div class="warning">
+          설정한 60분을 초과했습니다.<br />
+          잠시 쉬어가는 시간을 가져보세요.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">기술 구현 방식</h2>
+    <p class="section-desc">
+      실제 앱 개발 단계에서는 Android Studio와 Kotlin을 활용합니다.
     </p>
 
-    <div class="highlight">
-      <strong>최종 정리</strong>
+    <div class="cards">
+      <div class="card">
+        <h3>UsageStatsManager</h3>
+        <p>
+          안드로이드의 앱 사용 통계 기능을 이용하여 SNS 앱별 사용 시간을 측정합니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Notification</h3>
+        <p>
+          사용 시간이 기준치를 넘으면 사용자에게 경고 알림을 보냅니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>WorkManager</h3>
+        <p>
+          앱이 꺼져 있어도 일정 시간마다 사용 시간을 확인하도록 백그라운드 작업을 수행합니다.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>VpnService</h3>
+        <p>
+          고급 기능으로, 사용 시간이 초과되었을 때 네트워크 속도를 느리게 만드는 방식으로 확장할 수 있습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">기대 효과</h2>
+    <div class="problem">
       <p>
-        AI를 활용하면서 단순한 아이디어를 실제 구현 가능한 앱 구조로 구체화할 수 있었지만,
-        기술적 한계를 고려해 팀 수준에 맞게 기능을 조정하는 과정이 중요하다는 점을 알게 되었다.
+        이 앱은 청소년이 SNS 사용 시간을 직접 확인하고, 무의식적인 사용을 줄이도록 돕습니다.
+        단순한 강제 차단이 아니라 알림과 제한 모드를 통해 스스로 사용 습관을 조절하도록 유도한다는 점에서 의미가 있습니다.
+        또한 향후 인터넷 속도 지연 기능을 추가하면 SNS의 즉각적 보상 효과를 낮추어 중독 완화에 도움을 줄 수 있습니다.
       </p>
     </div>
   </section>
 
   <footer>
-    <p>창의적 공학입문 설계 | SNS 중독 개선 앱 프로젝트</p>
+    <p>Creative Engineering Design Project</p>
+    <p>SNS Control App Prototype</p>
   </footer>
 
 </body>
