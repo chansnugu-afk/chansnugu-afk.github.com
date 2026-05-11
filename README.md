@@ -1,2 +1,2 @@
-# chansnugu-afk.github.com
+# chansnugu-afk.github.io
 wwwww
